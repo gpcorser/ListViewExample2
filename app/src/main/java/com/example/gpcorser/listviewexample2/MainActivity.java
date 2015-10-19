@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,9 +21,9 @@ public class MainActivity extends AppCompatActivity {
 
         //created a collection of strings
         String [] favoriteTVShows = {"Zippy", "Zappy","Wild West","Gunsmoke","Cannon Fodder"};
+        String [] favoriteTVActors = {"Smith", "Jones","Aaron","Williams","Zippy"};
 
-        ListAdapter theAdapter = new ArrayAdapter<String>(this,
-                R.layout.row_layout2, R.id.textView1,favoriteTVShows);
+        MyAdapter theAdapter = new MyAdapter(this, favoriteTVShows, favoriteTVActors);
 
         ListView theListView = (ListView) findViewById(R.id.theListView);
 
@@ -35,7 +36,12 @@ public class MainActivity extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> AdapterView, View view, int position, long id) {
                         String tvShowPicked = " You selected " +
                                 String.valueOf(AdapterView.getItemAtPosition(position));
-                        Toast.makeText(MainActivity.this, tvShowPicked, Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(MainActivity.this, tvShowPicked, Toast.LENGTH_SHORT).show();
+                        TextView textView2 = (TextView) view.findViewById(R.id.textView2);
+                        if(textView2.getVisibility()==View.VISIBLE)
+                            textView2.setVisibility(View.GONE);
+                        else
+                            textView2.setVisibility(View.VISIBLE);
                     }
                 }
         );
